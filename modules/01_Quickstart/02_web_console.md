@@ -1,7 +1,7 @@
 # Web Console
 
-The web UI for OpenShift is available from all of ORNL (you should be
-able to reach it from your laptop on ORNL WiFi as well as the VPN).
+The easiest way to access and interact with OpenShift is through the web console
+and is avaiable to all users. Log in with either your Moderate or Open credentials.
 
 ## Exercise: Logging in with the web console
 

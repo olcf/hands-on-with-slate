@@ -45,6 +45,12 @@ image/
 └── nginx.conf
 ```
 
+> Note: We make a few changes in the nginx.conf file including sending logs to stdout and stderr,
+turning off pid file creation, and running as a specific user id. The logging is sent to stdout
+because OpenShift will store all logs from the container. We turn off pidfile creation because
+it is not necessary in our enviornment. We do not specify a user id to run as because all container
+processes in Slate run as the automation user for the project.
+
 ```
 $ oc start-build example-build --from-dir=image --follow
 ```
@@ -53,6 +59,6 @@ $ oc start-build example-build --from-dir=image --follow
 
 Follow the same procedure from before and update our Helm chart deployment with a new image.
 
-Image: `example-build:latest`
+- Image: **example-build:latest**
 
-[Next](06_next_steps.md)
+[Next](06_storage.md)

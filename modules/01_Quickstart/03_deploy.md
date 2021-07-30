@@ -14,7 +14,7 @@ Click the **+Add** button on the left menu bar and choose **Helm Chart**.
 > The OLCF maintains a set of charts for Helm for helping users deploy common pieces of infrastructure so they can focus
 > on their application: [olcf/slate-helm-charts](https://github.com/olcf/slate-helm-charts)
 
-Select the Deploy Image chart which we will use to deploy a generic container image onto Slate.
+Select the **Deploy Image** chart which we will use to deploy a generic container image onto Slate.
 
 Fill out the form and click **Install** at the bottom:
 
