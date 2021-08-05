@@ -16,21 +16,21 @@ registry. Images can be pushed into and pulled from the registry both inside and
 cluster.
 
 A BuildConfig describes how the integrated contianer build service actually builds the container.
-In this example, our configuration is minimal but the BuildConfig has more advanced configuration
+In this nginx, our configuration is minimal but the BuildConfig has more advanced configuration
 options such as automatically build containers from configuration stored in a git repo.
 
 Using the `oc` client utility we can create a "binary" input build which means that the Build input
 will come from our local machine.
 
 ```
-$ oc new-build --name example-build --binary
+$ oc new-build --name nginx-build --binary
     * A Docker build using binary input will be created
-      * The resulting image will be pushed to image stream tag "example-build:latest"
+      * The resulting image will be pushed to image stream tag "nginx-build:latest"
       * A binary build was created, use 'oc start-build --from-dir' to trigger a new build
 
---> Creating resources with label build=example-build ...
-    imagestream.image.openshift.io "example-build" created
-    buildconfig.build.openshift.io "example-build" created
+--> Creating resources with label build=nginx-build ...
+    imagestream.image.openshift.io "nginx-build" created
+    buildconfig.build.openshift.io "nginx-build" created
 --> Success
 ```
 
@@ -46,19 +46,19 @@ image/
 ```
 
 > Note: We make a few changes in the nginx.conf file including sending logs to stdout and stderr,
-turning off pid file creation, and running as a specific user id. The logging is sent to stdout
-because OpenShift will store all logs from the container. We turn off pidfile creation because
+moving pid file creation, and running as a specific user id. The logging is sent to stdout
+because OpenShift will store all logs from the container. We move pidfile creation because
 it is not necessary in our enviornment. We do not specify a user id to run as because all container
 processes in Slate run as the automation user for the project.
 
 ```
-$ oc start-build example-build --from-dir=image --follow
+$ oc start-build nginx-build --from-dir=image --follow
 ```
 
 ## Exercise: Update Deployment with New Image
 
 Follow the same procedure from before and update our Helm chart deployment with a new image.
 
-- Image: **example-build:latest**
+- Image: **nginx-build:latest**
 
 [Next](06_storage.md)
