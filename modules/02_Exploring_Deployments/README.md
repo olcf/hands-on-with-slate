@@ -9,7 +9,6 @@ and fix any problems.
 
 * Describing resources
 * Getting a shell in a running container
-* Container logging
 * Container monitoring
 * Container resource requests and limits
 

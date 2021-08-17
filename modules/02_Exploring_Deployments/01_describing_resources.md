@@ -1,12 +1,18 @@
-# Describing Resources
+# Exploring Resources
 
 In the previous section we focused on the Developer section of the OpenShift web console
 but we will be focusing on using the CLI tools.
 
-## Exercise: List Resources in Namespace
+## Exercise: Create Deployment
 
 ```
-$ oc get deployments
+oc create -f deployment.yaml
+```
+
+## Exercise: Describe Deployment
+
+```
+$ oc get pod,replicaset,deployment
 ```
 
 ```
