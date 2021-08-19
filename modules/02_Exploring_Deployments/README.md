@@ -8,8 +8,9 @@ and fix any problems.
 ## Concepts
 
 * Describing resources
+* Looking at logs of a pod
 * Getting a shell in a running container
-* Container monitoring
-* Container resource requests and limits
+* Setting resources
+* Scaling and upgrading a deployment
 
 [Next](01_.md)
