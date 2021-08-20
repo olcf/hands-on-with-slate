@@ -10,19 +10,40 @@ and priority classes of workloads, for more information please click [here](http
 Setting resources is done by setting **limits** and **requests**. Think if limits as your maximum and requests as your minimum settings 
 to run the workload. Setting them to the same value **guarantees** the resources being available. Lets do this now:
 ```
-$ oc set resources deploy/hello-world-cli -c=hello-world-cli --requests=cpu=50m,memory=48Mi --limits=cpu=50m,memory=48Mi
+$ oc set resources deploy/hello-world-cli -c=hello-world-cli --requests=cpu=10m,memory=48Mi --limits=cpu=10m,memory=48Mi
 ```
 
-## OOM Kill Demo?
-Now lets expose the deployment with a service that points to your workload. Think of this as adding an internal DNS entry so other workloads 
-in the cluster can reach the endpoint:
+## Excercise: OOM Kill Demo
+To show what happens when a pod tries to use more memory that its allocated, copy the YAML to test: 
 ```
-oc expose deployment hello-world-cli --name hello-world-cli-service --type ClusterIP --protocol TCP --port 8080 --target-port 8080
+$ cat <<EOF | oc apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: "100Mi"
+      requests:
+        memory: "100Mi"
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+EOF
 ```
 
-Next lets run a pod that will send endless requests to the service endpoint to generate load:
+We can see in the cluster this is being OOMKilled since its trying to allocated more memory that its limit setting allows:
 ```
-oc run -i --tty load-generator --rm --image=busybox --restart=Never --requests=cpu=50m,memory=48Mi --limits=cpu=50m,memory=48Mi -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://hello-world-cli-service:8080; done"
+$ oc get pod memory-demo -o go-template="{{range .status.containerStatuses}}{{.lastState.terminated.reason}}{{end}}"
+OOMKilled
+```
+
+Lets cleanup the memory-demo pod and continue to the next section:
+```
+$ oc delete pod memory-demo
 ```
 
 [Next](05_scaling_and_upgrading.md)

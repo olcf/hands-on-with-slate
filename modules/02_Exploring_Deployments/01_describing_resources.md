@@ -17,7 +17,7 @@ There are several ways to create a deployment on OpenShift using the CLI tool.
 ### Create the Deployment using CLI
 The first approach will create a deployment object for us. To create a deployment without YAML, use the following:
 ```
-oc create deployment hello-world-cli --image "openshift/hello-openshift:latest"
+oc create deployment hello-world-cli --image "gcr.io/google-samples/hello-app:1.0"
 ```
 
 We can verify this deployment has been created by running:
@@ -38,7 +38,7 @@ like adding labels or specifying readiness/liveness probes. We don't have to sta
 a flag **--dry-run** and **-o yaml** that we can use to generate template to start with:
 
 ```
-$ oc create deployment hello-world-cli --image "openshift/hello-openshift:latest" --dry-run=client -o yaml | tee > hello-world-cli-deployment.yaml
+$ oc create deployment hello-world-cli --image "gcr.io/google-samples/hello-app:1.0" --dry-run=client -o yaml | tee > hello-world-cli-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
       - image: gcr.io/google-samples/hello-app:1.0
-        name: hello-world-cli
+        name: hello-app
         resources: {}
 status: {}
 ```
@@ -72,6 +72,7 @@ kind: Deployment
 metadata:
   name: hello-world-cli
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: hello-world-cli
@@ -82,7 +83,6 @@ spec:
     spec:
       containers:
       - image: gcr.io/google-samples/hello-app:1.0
-        imagePullPolicy: IfNotPresent
         name: hello-world-cli
         ports:
         - containerPort: 8080

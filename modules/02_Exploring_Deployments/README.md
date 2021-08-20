@@ -13,4 +13,4 @@ and fix any problems.
 * Setting resources
 * Scaling and upgrading a deployment
 
-[Next](01_.md)
+[Next](01_describing_resources.md)
