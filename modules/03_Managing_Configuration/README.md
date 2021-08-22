@@ -7,6 +7,7 @@ an application deployed on Kubernetes.
 
 ## Concepts
 
+* Generating configuration
 * Deploying applications with plain YAML
 * Deploying with Helm
 
