@@ -1,43 +1,52 @@
 # Exploring Resources
 
 In the previous section we focused on the Developer section of the OpenShift web console
-but we will be focusing on using the CLI tools.
-
-## Exercise: Create Deployment
+but we will be focusing on using the CLI tools in this section.
 
 **What is a Deployment?**
+
 A Deployment provides declarative updates for Pods and ReplicaSets.
-You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. 
-You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.
-Reference documentation can be found [here](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
+You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the
+desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing
+Deployments and adopt all their resources with new Deployments.
 
-### 2 Ways to create a Deployment
-There are several ways to create a deployment on OpenShift using the CLI tool. 
+[Upstream documentation on deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
-### Create the Deployment using CLI
-The first approach will create a deployment object for us. To create a deployment without YAML, use the following:
-```
-oc create deployment hello-world-cli --image "gcr.io/google-samples/hello-app:1.0"
+## Exercise: Create a Basic Deployment
+
+There are several ways to create a deployment on OpenShift using the CLI tool. The first approach will create a
+deployment object for us. To create a deployment without YAML, use the following:
+
+```bash
+$ oc create deployment hello-world-cli --image "gcr.io/google-samples/hello-app:1.0"
 ```
 
 We can verify this deployment has been created by running:
-```
+
+```bash
 $ oc get deployments
 NAME                   READY   UP-TO-DATE   AVAILABLE   AGE
 hello-world-cli        1/1     1            1           1m
 ```
 
-### Create the Deployment using YAML
 Before starting with the next section, delete the deployment first using:
-```
-oc delete deployments hello-world-cli
+
+```bash
+$ oc delete deployment hello-world-cli
 ```
 
-Another way is to create the YAML then apply it to the cluster. This is a preferred method when customizing the Deployment is needed 
-like adding labels or specifying readiness/liveness probes. We don't have to start YAML from scratch though, native Kubectl provides 
-a flag **--dry-run** and **-o yaml** that we can use to generate template to start with:
+### Create a Deployment using YAML
 
-```
+Another way is to create the YAML then apply it to the cluster. This is a preferred method when customizing the
+Deployment is needed like adding labels or specifying readiness/liveness probes. We don't have to start YAML
+from scratch though, native Kubectl provides the flags `--dry-run -o yaml` that we can use to generate template:
+
+| Flag | Explanation |
+| --- | --- |
+| `--dry-run` | Do not actually create the resource on the server |
+| `-o yaml` | Change the command output to YAML |
+
+```bash
 $ oc create deployment hello-world-cli --image "gcr.io/google-samples/hello-app:1.0" --dry-run=client -o yaml | tee > hello-world-cli-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -66,7 +75,8 @@ status: {}
 ```
 
 Lets edit this file to look like this:
-```
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -89,17 +99,21 @@ spec:
           protocol: TCP
 ```
 
-Now we can apply the yaml to the cluster, verification of the deployment can be checked by running **oc get deployments** after running:
-```
-oc create -f hello-world-cli-deployment.yaml
+Now we can apply the yaml to the cluster:
+
+```bash
+$ oc create -f hello-world-cli-deployment.yaml
 ```
 
-## Exercise: Describing Deployment Components
+## Exercise: Describing a Deployment
 
-### Describe Deployment
-By creating a Deployment, this by default will create a replicaSet, Pod(s), and the Deployment object. Now that we 
-have deployment running in the cluster, we can request information on these different components by using **describe**:
-```
+While it may look like a Deployment is a self-contained object, in reality it just manages ReplicaSets which
+in turn manages one or more Pods.
+
+Now that we have our deployment running in the cluster, we can get information on these different components
+with `oc describe`:
+
+```bash
 $ oc describe deployment hello-world-cli
 Name:                   hello-world-cli
 ...
@@ -119,12 +133,13 @@ Events:
   Type    Reason             Age    From                   Message
   ----    ------             ----   ----                   -------
   Normal  ScalingReplicaSet  2m27s  deployment-controller  Scaled up replica set hello-world-cli-d5898598f to 1
+```
 
-```
-### Describe ReplicaSet
-We don't know the ReplicaSet and Pod names created, as they will be the name of the deployment followed by **-xxx**, but we can  
-using the label from the deployment **app: hello-world-cli**:
-```
+We do not know the names of the ReplicaSets or Pods because they are autogenerated but we can use the
+label selector `app=hello-world-cli` which corresponds to the label that we defined in our Deployment
+YAML above.
+
+```bash
 $ oc describe replicasets -l app=hello-world-cli
 Name:           hello-world-cli-d5898598f
 ...
@@ -147,9 +162,10 @@ Events:
   ----    ------            ----  ----                   -------
   Normal  SuccessfulCreate  26m   replicaset-controller  Created pod: hello-world-cli-d5898598f-c78rm
 ```
-### Describe Pod
-Now lets describe the Pod:
-```
+
+Now we will describe the Pod using the same label selector.
+
+```bash
 $ oc describe pods -l app=hello-world-cli
 Name:         hello-world-cli-d5898598f-c78rm
 ...
@@ -177,4 +193,4 @@ Events:
   Normal  Started         27m        kubelet, granite4.ccs.ornl.gov  Started container hello-world-cli
 ```
 
-[Next](02_logs.md)
+[Next](02_monitoring.md)
