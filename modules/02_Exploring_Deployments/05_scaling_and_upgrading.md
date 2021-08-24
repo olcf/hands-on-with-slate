@@ -13,7 +13,7 @@ Next lets run a pod another terminal window that will send endless requests to t
 ```
 $ oc run -i --tty send-requests --rm --image=busybox --restart=Never --requests=cpu=50m,memory=64Mi --limits=cpu=50m,memory=64Mi -- /bin/sh -c "while sleep 1; do wget -q -O- http://hello-world-cli-service:8080; done"
 ```
-Leave this running in another terminal for obervation.
+Leave this running in another terminal for observation.
 
 ## Excercise: Scale the Deployment
 Observing the output of the terminal, you can see the hostname and version of the pod responding. Now lets scale the deployment to 5 replicas and watch the output loadbalance between the pods:

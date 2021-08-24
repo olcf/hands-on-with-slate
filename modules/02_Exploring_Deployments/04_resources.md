@@ -2,7 +2,7 @@
 
 Setting resource requirements for your workloads is always a good idea. It ensures your workload has enough resources to run as 
 expected, as well as guaranteeing the workload's resources. Without these settings, these will run under a Quality of Service (QoS) class 
-as "Best Effort" and will have no guarentee of continuing to run in the cluster. There is a plenty of functionality around setting resources 
+as "Best Effort" and will have no guarantee of continuing to run in the cluster. There is a plenty of functionality around setting resources 
 and priority classes of workloads, for more information please click [here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 
 ## Exercise: Setting Resources
