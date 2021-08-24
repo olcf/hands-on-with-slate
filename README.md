@@ -16,4 +16,4 @@ next to the Markdown.
 
 1. [Quickstart](modules/01_Quickstart/README.md)
 2. [Exploring Deployments](modules/02_Exploring_Deployments/README.md)
-3. [Managing Configuration with Helm](modules/03_Managing_Configuration/README.md)
+3. [Deploying Applications with Helm](modules/03_Deploying_with_Helm/README.md)
