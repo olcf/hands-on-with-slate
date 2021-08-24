@@ -11,3 +11,9 @@ follow the links at the bottom of each file to go to the next exercise.
 You are welcome and encouraged to check out this repository to your local machine. Some modules
 may refer to configuration files and other data which should be contained in the module directory
 next to the Markdown.
+
+## Modules
+
+1. [Quickstart](modules/01_Quickstart/README.md)
+2. [Exploring Deployments](modules/02_Exploring_Deployments/README.md)
+3. [Managing Configuration with Helm](modules/03_Managing_Configuration/README.md)
