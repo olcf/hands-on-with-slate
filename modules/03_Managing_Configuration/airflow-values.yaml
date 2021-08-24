@@ -1,0 +1,32 @@
+---
+# Ingress configuration
+ingress:
+  enabled: true
+  web:
+    annotations:
+      ccs.ornl.gov/externalRoute: "true"
+
+extraEnv: |
+  - name: AIRFLOW__CORE__LOAD_EXAMPLES
+    value: 'True'
+
+# Airflow Worker Config
+workers:
+  persistence:
+    size: 1Gi
+
+  resources:
+   limits:
+    cpu: 1
+    memory: 2Gi
+   requests:
+    cpu: 1
+    memory: 2Gi
+
+# Statsd settings
+statsd:
+  enabled: false
+
+# Configuration for postgresql subchart
+postgresql:
+  enabled: false

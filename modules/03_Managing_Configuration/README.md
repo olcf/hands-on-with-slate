@@ -1,14 +1,14 @@
-# Managing Configuration
+# Deploying Applications with Helm
 
 ## Goal
 
-Learn about how to manage the configuration files that are used to describe
-an application deployed on Kubernetes.
+Learn about how to deploy complex applications with Helm, a Kubernetes
+ecosystem project.
 
 ## Concepts
 
-* Generating configuration
-* Deploying applications with plain YAML
-* Deploying with Helm
+* Introduction to Helm
+* Deploy a simple application
+* Deploy a complex application: Airflow
 
-[Next](01_.md)
+[Next](01_intro.md)
