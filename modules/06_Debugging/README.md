@@ -6,7 +6,8 @@ Be able to debug a number of common issues
 
 ## Concepts
 
-* Create debug containers
-* Check Events
+* Container Status
+* Kubernetes Events
+* Debug Containers
 
 [Next](01_.md)
