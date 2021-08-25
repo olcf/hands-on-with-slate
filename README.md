@@ -17,3 +17,5 @@ next to the Markdown.
 1. [Quickstart](modules/01_Quickstart/README.md)
 2. [Exploring Deployments](modules/02_Exploring_Deployments/README.md)
 3. [Deploying Applications with Helm](modules/03_Deploying_with_Helm/README.md)
+4. [Deploying Databases](modules/04_Deploying_Databases/README.md)
+5. [Integration with OLCF](modules/05_Integration_with_OLCF/README.md)
