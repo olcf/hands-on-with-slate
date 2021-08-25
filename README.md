@@ -19,3 +19,4 @@ next to the Markdown.
 3. [Deploying Applications with Helm](modules/03_Deploying_with_Helm/README.md)
 4. [Deploying Databases](modules/04_Deploying_Databases/README.md)
 5. [Integration with OLCF](modules/05_Integration_with_OLCF/README.md)
+5. [Debugging](modules/06_Debugging/README.md)

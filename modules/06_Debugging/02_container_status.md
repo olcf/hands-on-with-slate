@@ -10,7 +10,7 @@ was created successfully.
 First we will create our bare pod:
 
 ```bash
-$ oc apply -f pod_schedule.yaml
+$ oc apply -f code/pod_schedule.yaml
 pod/test-pod created
 ```
 
@@ -84,8 +84,8 @@ to schedule the workload.
 We can delete this Pod and create the another:
 
 ```bash
-oc delete -f pod_schedule.yaml
-oc apply -f pod_image.yaml
+oc delete -f code/pod_schedule.yaml
+oc apply -f code/pod_image.yaml
 ```
 
 If we use `oc get`:
@@ -144,8 +144,8 @@ intervals between tries.
 We can fix that typo by deleting and creating a new Pod:
 
 ```bash
-oc delete -f pod_image.yaml
-oc apply -f pod.yaml
+oc delete -f code/pod_image.yaml
+oc apply -f code/pod.yaml
 ```
 
 We can see that this Pod is running normally:
@@ -160,7 +160,15 @@ We can also check the events for the pod to see the final steps of the orchestra
 starting the container:
 
 ```bash
-$ oc get events --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=test-pod-3
+oc get events --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=test-pod-3
+```
+
+## Exercise: Clean up
+
+When we are done we can clean up the running Pod:
+
+```bash
+oc delete -f code/pod.yaml
 ```
 
 [Next](03_debug.md)
