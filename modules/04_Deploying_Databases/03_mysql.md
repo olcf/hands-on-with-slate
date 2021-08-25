@@ -20,7 +20,7 @@ NAME    VERSION     STATUS   AGE
 mysql   5.7.33-v1   Ready    6m9s
 $ oc get route
 NAME               HOST/PORT                                                 PATH   SERVICES           PORT    TERMINATION     WILDCARD
-mysql-phpmyadmin   mysql-phpmyadmin-<<<my-namespave>>>.apps.marble.ccs.ornl.gov          mysql-phpmyadmin   <all>   edge/Redirect   None
+mysql-phpmyadmin   mysql-phpmyadmin-<<<my-namespace>>>.apps.marble.ccs.ornl.gov          mysql-phpmyadmin   <all>   edge/Redirect   None
 $ oc get svc
 NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 mysql              ClusterIP   172.25.167.22   <none>        3306/TCP   6m55s
