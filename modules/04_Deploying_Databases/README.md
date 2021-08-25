@@ -10,7 +10,6 @@ some databases that are supported.
 
 * Deploying MongoDB with Service Catalog
 * Deploying MySQL
-* Deploying PostgreSQL
 * Deploying Redis
 
-[Next](01_.md)
+[Next](01_intro.md)
