@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-submit
+  labels:
+    app: job-submit
+  annotations:
+    ccs.ornl.gov/batchScheduler: "true"
+    ccs.ornl.gov/fs: olcf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: job-submit
+  template:
+    metadata:
+      labels:
+        app: job-submit
+    spec:
+      containers:
+      - command:
+        - cat
+        stdin: true
+        tty: true
+        image: "image-registry.openshift-image-registry.svc:5000/openshift/ccs-rhel7-base-amd64:latest"
+        name: sh
+        resources: {}
