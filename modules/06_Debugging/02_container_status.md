@@ -150,7 +150,7 @@ oc apply -f pod.yaml
 
 We can see that this Pod is running normally:
 
-``bash
+```bash
 $ oc get pods
 NAME         READY   STATUS    RESTARTS   AGE
 test-pod-3   1/1     Running   0          43s
