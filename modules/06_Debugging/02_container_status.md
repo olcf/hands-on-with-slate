@@ -160,7 +160,7 @@ We can also check the events for the pod to see the final steps of the orchestra
 starting the container:
 
 ```bash
-$ oc get events --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=test-pod-3
+oc get events --sort-by=.metadata.creationTimestamp --field-selector involvedObject.name=test-pod-3
 ```
 
 [Next](03_debug.md)
