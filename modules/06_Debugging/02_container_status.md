@@ -91,7 +91,7 @@ oc apply -f pod_image.yaml
 If we use `oc get`:
 
 ```bash
-$ oc get pods -n stf042 -l tutorial=debugging
+$ oc get pods
 NAME         READY   STATUS             RESTARTS   AGE
 test-pod-2   0/1     ImagePullBackOff   0          49s
 ```
@@ -151,7 +151,7 @@ oc apply -f pod.yaml
 We can see that this Pod is running normally:
 
 ``bash
-$ oc get pods -n stf042 -l tutorial=debugging
+$ oc get pods
 NAME         READY   STATUS    RESTARTS   AGE
 test-pod-3   1/1     Running   0          43s
 ```
