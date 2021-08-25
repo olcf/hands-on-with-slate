@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-mount
+  name: test-mount
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-mount
+  template:
+    metadata:
+      labels:
+        app: test-mount
+    spec:
+      containers:
+      - command:
+        - cat
+        stdin: true
+        tty: true
+        image: busybox:latest
+        name: sh
+        resources: {}
