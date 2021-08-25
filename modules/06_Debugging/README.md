@@ -10,4 +10,4 @@ Be able to debug a number of common issues
 * Kubernetes Events
 * Debug Containers
 
-[Next](01_Intro.md)
+[Next](01_intro.md)
