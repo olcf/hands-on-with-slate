@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-3
+  labels:
+    tutorial: debugging
+spec:
+  containers:
+    - name: test-pod
+      image: "centos:7"
+      command: ["/bin/sh","-c"]
+      args: ["echo 'Hello World!'; cat"]
+      tty: true
+      stdin: true
+      resources: {}
+  terminationGracePeriodSeconds: 1

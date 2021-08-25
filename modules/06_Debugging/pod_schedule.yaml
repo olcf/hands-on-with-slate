@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+  labels:
+    tutorial: debugging
+spec:
+  nodeSelector:
+    foo: bar-does-not-exist
+  containers:
+    - name: test-pod
+      image: "cents:7"
+      command: ["/bin/sh","-c"]
+      args: ["echo 'Hello World!'; cat"]
+      tty: true
+      stdin: true
+      resources: {}
+  terminationGracePeriodSeconds: 1
