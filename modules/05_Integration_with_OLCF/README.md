@@ -7,8 +7,8 @@ for some types of applications such as workflow management systems.
 
 ## Concepts
 
-* Integration with batch scheduling
 * Integration with center-wide parallel filesystems
+* Integration with batch scheduling
 * Schedule containerized workloads that need GPUs
 
 [Next](01_.md)
