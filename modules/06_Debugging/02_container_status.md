@@ -1,4 +1,4 @@
-# Debugging Containers With Status
+# Container Status
 
 Imagine you have just made some changes to a working Pod spec and all the sudden there is no Pod.....
 
@@ -64,44 +64,44 @@ spec:
       stdin: true
   dnsPolicy: ClusterFirst
   terminationGracePeriodSeconds: 5
-  ```
+```
 
-  And lets get a clean slate:
+And lets get a clean slate:
 
-  ```bash
-  oc delete pod test-pod
-  ```
+```bash
+oc delete pod test-pod
+```
 
-  then:
+then:
 
-  ```bash
-  oc apply -f pod.yaml
-  ```
+```bash
+oc apply -f pod.yaml
+```
 
-  Alright now just run:
-  
-  ```bash
-  oc get pods
-  ``` 
+Alright now just run:
 
-  and if you are quick enough you will see the pod in Status `ContainerCreating`! Excellent! The Pod is scheduled, get pods again:
+```bash
+oc get pods
+``` 
 
-  ```bash
-  oc get pods
-  ```
+and if you are quick enough you will see the pod in Status `ContainerCreating`! Excellent! The Pod is scheduled, get pods again:
 
-  ...to see that `0/1` containers are ready and that the new Status is `ErrImagePull`.
+```bash
+oc get pods
+```
 
-  Back to Events!
+...to see that `0/1` containers are ready and that the new Status is `ErrImagePull`.
 
-  ```bash
-  oc get events
-  ```
+Back to Events!
 
-  Here you can see the new Failed event:
+```bash
+oc get events
+```
 
-  ```
-  Warning   Failed             pod/test-pod            Failed to pull image "cents:7": rpc error: code = Unknown desc = Error reading manifest 7 in docker.io/library/cents: errors:
+Here you can see the new Failed event:
+
+```
+Warning   Failed             pod/test-pod            Failed to pull image "cents:7": rpc error: code = Unknown desc = Error reading manifest 7 in docker.io/library/cents: errors:
 denied: requested access to the resource is denied
 ```
 
@@ -124,7 +124,7 @@ spec:
       stdin: true
   dnsPolicy: ClusterFirst
   terminationGracePeriodSeconds: 5
-  ```
+```
 
 And again!
 
@@ -132,21 +132,23 @@ And again!
 oc delete pod test-pod
 ```
 
-  ```bash
-  oc apply -f pod.yaml
-  ```
+```bash
+oc apply -f pod.yaml
+```
 
-  ``bash
-  oc get pods
-  ```
+``bash
+oc get pods
+```
 
-  And......its running!
+And......its running!
 
 
-  ### Recap
+### Recap
 
-  Here we learned to always check our Container status if the application is not launching. We can check for problems above the code in our application by running:
+Here we learned to always check our Container status if the application is not launching. We can check for problems above the code in our application by running:
 
-  ```bash
-  oc get events
-  ```
+```bash
+oc get events
+```
+
+[Next](03_debug.md)

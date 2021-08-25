@@ -23,17 +23,17 @@ spec:
       stdin: true
   dnsPolicy: ClusterFirst
   terminationGracePeriodSeconds: 5
-  ```
+```
 
-  You will notice that the container does not start and the Pod is in an errored state:
+You will notice that the container does not start and the Pod is in an errored state:
 
-  ```bash
-  oc get pods
-  ```
+```bash
+oc get pods
+```
 
-  to see that there are `0/1` containers ready and that the pod is in an `Error` state.
+to see that there are `0/1` containers ready and that the pod is in an `Error` state.
 
-  * If you wait long enough the pod will go into a `CrashLoopBackOff` state. Kubernetes does not really know anything it can do to get your code working other than just restarting the container. So it tries that. And when that does not work enough times the state will go to `CrashLoopBackOff` meaning it is going to back off how often it restarts your container. 
+* If you wait long enough the pod will go into a `CrashLoopBackOff` state. Kubernetes does not really know anything it can do to get your code working other than just restarting the container. So it tries that. And when that does not work enough times the state will go to `CrashLoopBackOff` meaning it is going to back off how often it restarts your container. 
 
 The first step when the application code is failing is to get the logs:
 
@@ -84,20 +84,21 @@ spec:
       stdin: true
   dnsPolicy: ClusterFirst
   terminationGracePeriodSeconds: 5
-  ```
+```
 
-  Delete the crashing pod
+Delete the crashing pod
 
-  ```bash
-  oc delete pod test-pod
-  ```
+```bash
+oc delete pod test-pod
+```
 
-  and apply the fixed spec:
+and apply the fixed spec:
 
-  ```bash
-  oc apply -f test-pod.yaml
-  ```
+```bash
+oc apply -f test-pod.yaml
+```
 
-  ### Recap
-  * If you application is failing check the logs with `oc logs {POD NAME}`
-  * If the logs are not sufficient, get a shell in the pod and start poking around with `oc debug {POD NAME}`
+### Recap
+
+* If you application is failing check the logs with `oc logs {POD NAME}`
+* If the logs are not sufficient, get a shell in the pod and start poking around with `oc debug {POD NAME}`
